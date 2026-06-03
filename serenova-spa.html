@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Serenova Spa & Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d0b08;--surface:#141109;--card:#1c1810;
+  --gold:#c9a84c;--gold2:#e8d5a3;--cream:#f5efe6;
+  --text:#f0e8d8;--muted:#9a8a72;--border:rgba(201,168,76,0.15)
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 6%;display:flex;align-items:center;justify-content:space-between;background:rgba(13,11,8,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.logo small{display:block;font-size:0.55rem;letter-spacing:6px;color:var(--muted);font-family:'Jost',sans-serif;font-weight:300;margin-top:2px}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-book{border:1px solid var(--gold);color:var(--gold);background:transparent;padding:10px 22px;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;cursor:pointer;transition:all 0.3s}
+.nav-book:hover{background:var(--gold);color:var(--bg)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;text-align:center;padding:0 5%}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 60%,rgba(201,168,76,0.08) 0%,transparent 70%)}
+.hero-line{position:absolute;top:0;left:50%;width:1px;height:120px;background:linear-gradient(180deg,transparent,var(--gold));transform:translateX(-50%)}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{font-size:0.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;font-weight:300}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,6rem);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:28px;color:var(--cream)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:0.9rem;color:var(--muted);max-width:420px;margin:0 auto 44px;line-height:1.8;font-weight:300;letter-spacing:0.5px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--bg);border:none;padding:15px 36px;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:500;cursor:pointer;transition:opacity 0.2s}
+.btn-gold:hover{opacity:0.85}
+.btn-ghost{background:transparent;color:var(--gold);border:1px solid var(--border);padding:15px 36px;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;cursor:pointer;transition:border-color 0.3s}
+.btn-ghost:hover{border-color:var(--gold)}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:60px auto 0;opacity:0.4}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:var(--surface)}
+.marquee-track{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite}
+.marquee-item{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);padding:0 40px;display:flex;align-items:center;gap:20px}
+.marquee-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about{padding:110px 6%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img{position:relative}
+.about-img-box{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,#1e1810,#2a2015);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}
+.about-img-box::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(201,168,76,0.05),transparent)}
+.about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--gold);color:var(--bg);padding:20px;text-align:center}
+.about-badge .num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;display:block;line-height:1}
+.about-badge .label{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;margin-top:4px;display:block}
+.about-eyebrow{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.about h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;line-height:1.2;margin-bottom:22px;color:var(--cream)}
+.about p{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:16px;font-weight:300}
+.about-features{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+.feat{text-align:center}
+.feat-icon{font-size:1.4rem;margin-bottom:8px}
+.feat-label{font-size:0.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* SERVICES */
+.services{padding:100px 6%;background:var(--surface)}
+.section-header{text-align:center;margin-bottom:60px}
+.section-eyebrow{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--cream);letter-spacing:-0.5px}
+.section-title em{font-style:italic}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)}
+.service-item{background:var(--card);padding:40px 30px;transition:background 0.3s;cursor:default}
+.service-item:hover{background:#221e14}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--border);margin-bottom:20px;line-height:1}
+.service-item h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--cream);margin-bottom:12px}
+.service-item p{font-size:0.8rem;color:var(--muted);line-height:1.7;font-weight:300}
+.service-duration{margin-top:20px;font-size:0.7rem;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.service-price{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold2);margin-top:8px}
+
+/* EXPERIENCE */
+.experience{padding:100px 6%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.exp-content .section-eyebrow{margin-bottom:18px}
+.exp-content h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:300;line-height:1.2;margin-bottom:24px;color:var(--cream)}
+.exp-content p{font-size:0.88rem;color:var(--muted);line-height:1.9;margin-bottom:30px;font-weight:300}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.exp-list li{display:flex;align-items:flex-start;gap:14px;font-size:0.85rem;color:var(--muted);font-weight:300}
+.exp-list li::before{content:'✦';color:var(--gold);font-size:0.6rem;margin-top:5px;flex-shrink:0}
+.exp-img{background:linear-gradient(135deg,#1a1610,#251f12);aspect-ratio:4/5;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:6rem}
+
+/* TEAM */
+.team{padding:100px 6%;background:var(--surface);text-align:center}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-top:60px}
+.team-card{cursor:default}
+.team-photo{aspect-ratio:1;background:linear-gradient(135deg,#1e1810,#2a2015);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:3rem;margin-bottom:20px;transition:border-color 0.3s}
+.team-card:hover .team-photo{border-color:rgba(201,168,76,0.4)}
+.team-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);margin-bottom:4px}
+.team-role{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* TESTIMONIALS */
+.testimonials{padding:100px 6%}
+.testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:60px}
+.testi-card{border:1px solid var(--border);padding:36px;background:var(--surface);position:relative}
+.testi-card::before{content:'\201C';font-family:'Cormorant Garamond',serif;font-size:5rem;color:var(--gold);opacity:0.15;position:absolute;top:10px;left:20px;line-height:1}
+.testi-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream);line-height:1.7;margin-bottom:24px;position:relative;z-index:1}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:var(--gold);font-weight:500}
+.testi-name{font-size:0.82rem;color:var(--cream);font-weight:400}
+.testi-stars{font-size:0.7rem;color:var(--gold);letter-spacing:2px}
+
+/* BOOKING */
+.booking{padding:100px 6%;background:var(--surface)}
+.booking-wrap{max-width:700px;margin:0 auto;text-align:center}
+.booking-wrap h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--cream);margin-bottom:16px}
+.booking-wrap p{font-size:0.88rem;color:var(--muted);margin-bottom:50px;font-weight:300;line-height:1.7}
+.booking-form{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.form-field input,.form-field select,.form-field textarea{background:#1c1810;border:1px solid var(--border);color:var(--text);padding:14px 16px;font-family:'Jost',sans-serif;font-size:0.85rem;outline:none;transition:border-color 0.3s}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:rgba(201,168,76,0.4)}
+.form-field select option{background:#1c1810}
+.form-field textarea{height:90px;resize:vertical}
+.book-submit{grid-column:1/-1;background:var(--gold);color:var(--bg);border:none;padding:16px;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:500;cursor:pointer;transition:opacity 0.2s;margin-top:8px}
+.book-submit:hover{opacity:0.85}
+
+/* FOOTER */
+footer{padding:60px 6% 30px;border-top:1px solid var(--border)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:50px}
+.footer-brand .logo{font-size:1.2rem;margin-bottom:16px;display:block}
+.footer-brand p{font-size:0.82rem;color:var(--muted);line-height:1.7;max-width:260px;font-weight:300}
+.footer-col h4{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:0.75rem;color:var(--muted)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .about,.experience{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .booking-form{grid-template-columns:1fr}
+  .form-field.full{grid-column:1}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Serenova<small>Spa & Wellness</small></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <button class="nav-book" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Reserve</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Luxury Wellness Sanctuary</p>
+    <h1>Restore.<br/><em>Renew.</em><br/>Radiate.</h1>
+    <p class="hero-desc">An exclusive retreat where ancient healing traditions meet modern luxury. Surrender to serenity.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book a Session</button>
+      <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Our Treatments</button>
+    </div>
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Swedish Massage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hot Stone Therapy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aromatherapy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Deep Tissue</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Facial Treatments</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Yoga & Meditation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hydrotherapy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Swedish Massage</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hot Stone Therapy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Aromatherapy</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Deep Tissue</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Facial Treatments</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Yoga & Meditation</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Hydrotherapy</span>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-img">
+    <div class="about-img-box">🪷</div>
+    <div class="about-badge"><span class="num">12</span><span class="label">Years of Excellence</span></div>
+  </div>
+  <div>
+    <p class="about-eyebrow">Our Philosophy</p>
+    <h2>Healing is an art. We are the artists.</h2>
+    <p>Founded in 2012, Serenova was born from a singular belief — that true wellness is not a luxury, but a necessity. We blend ancient Ayurvedic wisdom with contemporary science to create experiences that heal from within.</p>
+    <p>Every treatment is personalised to your body's unique needs. Our therapists are certified specialists with a minimum of five years' experience, ensuring an unrivalled standard of care.</p>
+    <div class="about-features">
+      <div class="feat"><div class="feat-icon">🌿</div><div class="feat-label">Natural Products</div></div>
+      <div class="feat"><div class="feat-icon">🏆</div><div class="feat-label">Award Winning</div></div>
+      <div class="feat"><div class="feat-icon">🕊️</div><div class="feat-label">Private Suites</div></div>
+      <div class="feat"><div class="feat-icon">✦</div><div class="feat-label">5-Star Rated</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-header">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Curated <em>Treatments</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <h3>Swedish Massage</h3>
+      <p>Full-body relaxation using long flowing strokes to ease tension and improve circulation.</p>
+      <div class="service-duration">60 / 90 min</div>
+      <div class="service-price">from $85</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <h3>Hot Stone Therapy</h3>
+      <p>Heated basalt stones melt away deep muscle tension while grounding the nervous system.</p>
+      <div class="service-duration">75 min</div>
+      <div class="service-price">from $120</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <h3>Signature Facial</h3>
+      <p>A personalised facial using organic botanicals tailored to your skin type and concerns.</p>
+      <div class="service-duration">60 min</div>
+      <div class="service-price">from $95</div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <h3>Ayurvedic Ritual</h3>
+      <p>Ancient Indian healing — Shirodhara, Abhyanga, and herbal steam for total restoration.</p>
+      <div class="service-duration">120 min</div>
+      <div class="service-price">from $180</div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="exp-content">
+    <p class="section-eyebrow">The Experience</p>
+    <h2>More than a treatment. A transformation.</h2>
+    <p>From the moment you step through our doors, every detail has been crafted to quiet the mind and restore the body. Ambient lighting, curated soundscapes, and signature scents welcome you into a world apart.</p>
+    <ul class="exp-list">
+      <li>Private changing suites with premium robes and slippers</li>
+      <li>Complimentary herbal tea and seasonal fruit upon arrival</li>
+      <li>Access to steam room, sauna, and relaxation lounge</li>
+      <li>Personalised aftercare recommendations from your therapist</li>
+      <li>Online booking with instant confirmation</li>
+    </ul>
+  </div>
+  <div class="exp-img">🛁</div>
+</section>
+
+<section class="team" id="team">
+  <div class="section-header">
+    <p class="section-eyebrow">Our Specialists</p>
+    <h2 class="section-title">Meet the <em>Healers</em></h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card"><div class="team-photo">👩‍⚕️</div><div class="team-name">Elena Rossi</div><div class="team-role">Lead Therapist</div></div>
+    <div class="team-card"><div class="team-photo">🧘‍♀️</div><div class="team-name">Priya Nair</div><div class="team-role">Ayurvedic Specialist</div></div>
+    <div class="team-card"><div class="team-photo">💆‍♀️</div><div class="team-name">Sophia Chen</div><div class="team-role">Skin Specialist</div></div>
+    <div class="team-card"><div class="team-photo">🌸</div><div class="team-name">Mia Johnson</div><div class="team-role">Aromatherapist</div></div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="section-header">
+    <p class="section-eyebrow">Guest Words</p>
+    <h2 class="section-title">Stories of <em>Serenity</em></h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testi-card">
+      <p class="testi-text">I have visited spas across three continents. Serenova is, without question, the finest experience I have ever had. The Ayurvedic ritual left me feeling completely reborn.</p>
+      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Amanda M. — London</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-text">The hot stone massage was transcendent. My therapist was intuitive and professional. I left floating on air. This is now my monthly ritual — I simply cannot imagine life without it.</p>
+      <div class="testi-author"><div class="testi-avatar">JL</div><div><div class="testi-name">James L. — New York</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-text">Serenova understands wellness at a cellular level. Every detail — the scent, the music, the lighting — is perfect. A true sanctuary from the chaos of modern life.</p>
+      <div class="testi-author"><div class="testi-avatar">SK</div><div><div class="testi-name">Sara K. — Dubai</div><div class="testi-stars">★★★★★</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="booking">
+  <div class="booking-wrap">
+    <p class="section-eyebrow">Reserve Your Visit</p>
+    <h2>Begin Your Journey</h2>
+    <p>Book your treatment online and receive a complimentary consultation with your therapist prior to your session.</p>
+    <div class="booking-form">
+      <div class="form-field"><label>First Name</label><input type="text" placeholder="Elena"/></div>
+      <div class="form-field"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="elena@example.com"/></div>
+      <div class="form-field"><label>Phone</label><input type="tel" placeholder="+1 555 000 0000"/></div>
+      <div class="form-field"><label>Treatment</label>
+        <select>
+          <option>Swedish Massage — from $85</option>
+          <option>Hot Stone Therapy — from $120</option>
+          <option>Signature Facial — from $95</option>
+          <option>Ayurvedic Ritual — from $180</option>
+        </select>
+      </div>
+      <div class="form-field"><label>Preferred Date</label><input type="date"/></div>
+      <div class="form-field full"><label>Special Requests</label><textarea placeholder="Any health conditions, preferences, or special requests..."></textarea></div>
+      <button class="book-submit" onclick="this.textContent='✦ Request Sent — We\'ll confirm within 2 hours'">Request Appointment</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="logo">Serenova</span>
+      <p>A luxury wellness sanctuary dedicated to restoring harmony between mind, body, and spirit through the art of healing.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Treatments</h4>
+      <ul>
+        <li><a href="#">Swedish Massage</a></li>
+        <li><a href="#">Hot Stone Therapy</a></li>
+        <li><a href="#">Facial Treatments</a></li>
+        <li><a href="#">Ayurvedic Ritual</a></li>
+        <li><a href="#">Couples Retreat</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <ul>
+        <li><a href="#">12 Tranquil Lane, NY</a></li>
+        <li><a href="#">Mon–Sun: 9am–9pm</a></li>
+        <li><a href="#">+1 (212) 555-0191</a></li>
+        <li><a href="#">hello@serenova.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Serenova Spa & Wellness. All rights reserved.</p>
+    <p>Privacy Policy · Terms of Service</p>
+  </div>
+</footer>
+
+</body>
+</html>
