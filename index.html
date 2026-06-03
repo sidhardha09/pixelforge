@@ -97,8 +97,8 @@ section{padding:90px 5%}
 .portfolio-thumb.t2{background:linear-gradient(135deg,#0d2f1a,#1a6b3c)}
 .portfolio-thumb.t3{background:linear-gradient(135deg,#2d0a0a,#8b2323)}
 .portfolio-thumb.t4{background:linear-gradient(135deg,#0a1a2d,#1a4a7a)}
-.portfolio-overlay{position:absolute;inset:0;background:rgba(124,92,252,0.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
-.portfolio-card:hover .portfolio-overlay{position:absolute;inset:0;background:rgba(124,92,252,0.85);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.portfolio-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,252,0.6),rgba(0,229,160,0.4));backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.portfolio-card:hover .portfolio-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,252,0.6),rgba(0,229,160,0.4));backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
 .portfolio-card:hover .portfolio-overlay{opacity:1}
 .portfolio-overlay-btn{background:#fff;color:var(--accent);border:none;padding:10px 22px;border-radius:8px;font-weight:600;font-size:0.85rem;cursor:pointer}.portfolio-overlay{opacity:1}
 .portfolio-overlay-btn{background:#fff;color:var(--accent);border:none;padding:10px 22px;border-radius:8px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer}
@@ -246,7 +246,7 @@ footer p{font-size:0.78rem;color:var(--muted)}
 <nav>
   <div class="logo">Pixel<span>Forge</span></div>
   <ul class="nav-links">
-    <li><a onclick="scrollTo('services')">Services</a></li>
+    <li><a onclick="scrollTo('services')">Services</a></li> <li><a onclick="scrollTo('portfolio')">Work</a></li> <li><a onclick="scrollTo('pricing')">Pricing</a></li> <li><a onclick="scrollTo('contact')">Contact</a></li>
     <li><a onclick="scrollTo('portfolio')">Work</a></li>
     <li><a onclick="scrollTo('pricing')">Pricing</a></li>
     <li><a onclick="scrollTo('contact')">Contact</a></li>
@@ -365,7 +365,7 @@ footer p{font-size:0.78rem;color:var(--muted)}
       <div class="portfolio-info"><h4>FitPeak – Fitness Studio</h4><p>Booking system, class schedule, and membership portal</p><span class="portfolio-tag">WordPress</span></div>
     </div>
     <div class="portfolio-card">
-      <div class="portfolio-thumb t2">
+      <div class="portfolio-thumb t2" style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600');background-size:cover;background-position:center"></div>
         <span>🌿</span>
         <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="scrollTo('contact')">Start Similar Project</button></div>
       </div>
