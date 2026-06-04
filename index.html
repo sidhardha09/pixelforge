@@ -9,6 +9,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Pre-paint theme to avoid flash
+  (function(){
+    try{
+      var s = localStorage.getItem('pf-theme');
+      if(!s){ s = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+      document.documentElement.setAttribute('data-theme', s);
+    }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+  })();
+</script>
+
 
 <style>
 /* ===================== CONFIG BANNER ===================== */
@@ -233,7 +244,320 @@ footer p{font-size:0.78rem;color:var(--muted)}
   .inquiry-table th:nth-child(n+4),.inquiry-table td:nth-child(n+4){display:none}
 }
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+<style id="aesthetic-layer">
+/* ===== Polished aesthetic layer (additive, non-breaking) ===== */
+:root{
+  --grad: conic-gradient(from 210deg at 50% 50%, #7c5cfc 0deg, #00e5a0 110deg, #ff6ad5 230deg, #7c5cfc 360deg);
+  --ring: 0 0 0 1px rgba(255,255,255,.06), 0 30px 80px -30px rgba(124,92,252,.5);
+}
+html,body{background:#07070b}
+body::before{
+  content:""; position:fixed; inset:-1px; pointer-events:none; z-index:1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay; opacity:.55;
+}
+body::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(124,92,252,.18), transparent 60%),
+    radial-gradient(50% 40% at 100% 10%, rgba(0,229,160,.12), transparent 60%),
+    radial-gradient(40% 30% at 50% 100%, rgba(255,106,213,.10), transparent 60%);
+}
+nav, section, footer{position:relative; z-index:2}
+
+/* NAV refinement */
+nav{padding:14px 5%; background:rgba(10,10,15,.55); border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{font-size:1.25rem; letter-spacing:-.6px}
+.logo span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; filter:saturate(1.2)}
+.nav-cta{background:linear-gradient(135deg,#7c5cfc,#a78bfa); box-shadow:0 6px 20px -8px rgba(124,92,252,.8); border-radius:10px}
+.nav-cta:hover{transform:translateY(-1px); opacity:1; box-shadow:0 10px 28px -8px rgba(124,92,252,.9)}
+
+/* HERO */
+.hero{padding-top:14vh; min-height:100vh}
+.hero h1{
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(2.8rem, 7.2vw, 6rem); letter-spacing:-3px; line-height:1.02;
+  max-width: 1100px;
+}
+.hero h1 em{
+  font-family:'Instrument Serif', serif; font-style:italic; font-weight:400;
+  background: linear-gradient(120deg,#c4b6ff,#7c5cfc 40%, #00e5a0); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero h1 .green{font-family:'Instrument Serif', serif; font-style:italic; font-weight:400; color:#00e5a0}
+.hero-sub{font-size:1.12rem; max-width:560px; color:#b8b6c8}
+.hero-tag{
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1);
+  color:#e9e6ff; backdrop-filter: blur(8px); padding:7px 14px 7px 10px;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.hero-tag::before{content:""; width:7px; height:7px; border-radius:99px; background:#00e5a0; box-shadow:0 0 0 4px rgba(0,229,160,.18); animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(0,229,160,0)}}
+
+.btn-primary{
+  background:linear-gradient(135deg,#7c5cfc,#a78bfa);
+  box-shadow:0 12px 40px -16px rgba(124,92,252,.9), inset 0 1px 0 rgba(255,255,255,.2);
+  padding:15px 26px; border-radius:12px; font-weight:600;
+}
+.btn-primary:hover{transform:translateY(-2px) scale(1.01)}
+.btn-outline{
+  background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(10px); padding:15px 26px; border-radius:12px;
+}
+.btn-outline:hover{border-color:rgba(255,255,255,.28); background:rgba(255,255,255,.06)}
+
+.blob{filter:blur(120px); opacity:.28}
+.blob1{background:#7c5cfc}
+.blob2{background:#00e5a0}
+.hero-bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(transparent 0, rgba(255,255,255,.04) 1px, transparent 2px) 0 0/100% 64px,
+    linear-gradient(90deg, transparent 0, rgba(255,255,255,.04) 1px, transparent 2px) 0 0/64px 100%;
+  mask-image: radial-gradient(70% 60% at 50% 40%, #000, transparent 75%);
+  opacity:.5;
+}
+
+.stat-num{font-size:2.4rem; letter-spacing:-1.5px}
+.stat-num span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
+.hero-stats{border-top:1px solid rgba(255,255,255,.08); padding-top:36px}
+
+/* Marquee tape between hero and services */
+.tape{
+  position:relative; z-index:2; overflow:hidden;
+  border-block:1px solid rgba(255,255,255,.07);
+  background:linear-gradient(180deg,#0b0b12,#0a0a10);
+  padding:18px 0;
+}
+.tape-track{display:flex; gap:48px; width:max-content; animation:tape 38s linear infinite}
+.tape span{
+  font-family:'Syne',sans-serif; font-weight:800; letter-spacing:-1px;
+  font-size:1.4rem; color:rgba(255,255,255,.55);
+  display:inline-flex; align-items:center; gap:48px;
+}
+.tape span::after{content:"✦"; color:#7c5cfc}
+@keyframes tape{to{transform:translateX(-50%)}}
+
+/* SECTION TITLES */
+.section-title{
+  font-size:clamp(2rem,4.2vw,3.4rem); letter-spacing:-1.5px; max-width:780px;
+}
+.section-tag{
+  display:inline-block; padding:5px 12px; border:1px solid rgba(124,92,252,.35);
+  border-radius:99px; background:rgba(124,92,252,.08); color:#c4b6ff;
+  margin-bottom:18px;
+}
+.section-sub{font-size:1rem; color:#9b98ad; max-width:560px}
+
+/* SERVICES */
+.services{background:linear-gradient(180deg,#0a0a10,#0c0c14)}
+.service-card{
+  background:linear-gradient(180deg,#15151f,#101019);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px; padding:28px;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .3s;
+}
+.service-card:hover{transform:translateY(-6px); border-color:rgba(124,92,252,.45); box-shadow:var(--ring)}
+.service-icon{
+  background:linear-gradient(135deg, rgba(124,92,252,.25), rgba(0,229,160,.12));
+  border:1px solid rgba(255,255,255,.08); width:48px; height:48px; border-radius:14px;
+  font-size:1.4rem;
+}
+.service-card h3{font-size:1.1rem; letter-spacing:-.3px}
+.service-price{color:#00e5a0; font-weight:600}
+.service-btn{border-radius:10px; transition:all .25s}
+.service-btn:hover{background:rgba(124,92,252,.1); color:#fff; border-color:rgba(124,92,252,.5)}
+
+/* PROCESS */
+.step-num{
+  background:radial-gradient(circle at 30% 30%, #1f1a3a, #0d0d18);
+  border:1px solid rgba(124,92,252,.5);
+  box-shadow:0 0 0 6px rgba(124,92,252,.05), 0 10px 30px -10px rgba(124,92,252,.5);
+  width:62px; height:62px; font-size:1.2rem;
+}
+
+/* PORTFOLIO */
+.portfolio{background:linear-gradient(180deg,#0c0c14,#0a0a10)}
+.portfolio-card{
+  border-radius:20px; border:1px solid rgba(255,255,255,.06);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .3s;
+}
+.portfolio-card:hover{transform:translateY(-6px); border-color:rgba(124,92,252,.4); box-shadow:var(--ring)}
+.portfolio-thumb{height:230px; font-size:3rem}
+.portfolio-overlay{background:linear-gradient(135deg, rgba(124,92,252,.55), rgba(0,229,160,.35))}
+.portfolio-overlay-btn{border-radius:10px; padding:11px 22px; font-weight:600}
+.portfolio-info{background:#11111a; padding:20px}
+
+/* PRICING */
+.price-card{
+  background:linear-gradient(180deg,#15151f,#101019);
+  border:1px solid rgba(255,255,255,.06); border-radius:22px; padding:32px;
+  transition:transform .3s, box-shadow .3s, border-color .3s;
+}
+.price-card:hover{transform:translateY(-6px); box-shadow:var(--ring)}
+.price-card.featured{
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(124,92,252,.25), transparent 60%),
+    linear-gradient(180deg,#1a1530,#120f24);
+  border-color:rgba(124,92,252,.55);
+  box-shadow:0 30px 80px -30px rgba(124,92,252,.6);
+}
+.plan-price{font-size:3rem; letter-spacing:-2px}
+.plan-btn.primary{background:linear-gradient(135deg,#7c5cfc,#a78bfa); box-shadow:0 10px 30px -12px rgba(124,92,252,.9)}
+.featured-badge{background:linear-gradient(135deg,#7c5cfc,#00e5a0); color:#0a0a0f; font-weight:700; padding:5px 14px}
+
+/* TESTIMONIALS */
+.testimonials{background:linear-gradient(180deg,#0a0a10,#0c0c14)}
+.testimonial-card{
+  background:linear-gradient(180deg,#15151f,#101019);
+  border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:28px;
+  transition:transform .3s, border-color .3s;
+}
+.testimonial-card:hover{transform:translateY(-4px); border-color:rgba(255,255,255,.12)}
+.testimonial-card p{color:#cbc8dc; font-size:.95rem; font-style:normal}
+.testimonial-card p::before{content:"\201C"; font-family:'Instrument Serif',serif; font-size:3rem; line-height:0; color:#7c5cfc; margin-right:6px; vertical-align:-18px}
+.avatar{width:42px; height:42px}
+
+/* CONTACT */
+.contact-info h3{font-size:1.9rem; letter-spacing:-1px}
+.form-group input, .form-group textarea, .form-group select{
+  background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; padding:14px 16px; font-size:.92rem;
+  transition:border-color .2s, background .2s;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus{
+  border-color:#7c5cfc; background:rgba(124,92,252,.05);
+}
+.form-submit{
+  background:linear-gradient(135deg,#7c5cfc,#a78bfa);
+  border-radius:12px; padding:16px 28px; font-weight:600;
+  box-shadow:0 14px 40px -16px rgba(124,92,252,.9);
+}
+.contact-links a{padding:14px 0; font-size:.9rem; transition:color .2s, transform .2s}
+.contact-links a:hover{color:#fff; transform:translateX(4px)}
+
+/* FOOTER */
+footer{background:linear-gradient(180deg,#08080d,#050507); border-top:1px solid rgba(255,255,255,.06)}
+
+/* Scroll reveal */
+@media (prefers-reduced-motion: no-preference){
+  section > *{animation:reveal .9s cubic-bezier(.2,.7,.2,1) both}
+  section > *:nth-child(2){animation-delay:.06s}
+  section > *:nth-child(3){animation-delay:.12s}
+  section > *:nth-child(4){animation-delay:.18s}
+}
+@keyframes reveal{from{opacity:0; transform:translateY(18px)}to{opacity:1; transform:translateY(0)}}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:10px; height:10px}
+::-webkit-scrollbar-track{background:#0a0a10}
+::-webkit-scrollbar-thumb{background:linear-gradient(#7c5cfc,#5b3fd9); border-radius:99px}
+
+/* Selection */
+::selection{background:#7c5cfc; color:#fff}
+
+/* ===================== THEME TOGGLE ===================== */
+.theme-toggle{
+  position:relative; width:54px; height:30px; border-radius:999px; cursor:pointer;
+  background:linear-gradient(135deg, rgba(124,92,252,.18), rgba(0,229,160,.12));
+  border:1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 8px 24px -10px rgba(124,92,252,.5);
+  display:inline-flex; align-items:center; padding:0 4px; margin-right:12px;
+  transition: box-shadow .3s, border-color .3s, background .3s;
+}
+.theme-toggle:hover{ border-color: rgba(124,92,252,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 12px 32px -10px rgba(124,92,252,.75); }
+.theme-toggle .knob{
+  position:absolute; top:3px; left:3px; width:22px; height:22px; border-radius:50%;
+  background: linear-gradient(135deg, #fff, #e9e6ff);
+  box-shadow: 0 4px 12px -2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.4);
+  transition: transform .35s cubic-bezier(.4,1.4,.5,1);
+  display:flex; align-items:center; justify-content:center; font-size:.72rem; color:#1a1a2e;
+}
+:root[data-theme="light"] .theme-toggle .knob{ transform: translateX(24px); background:linear-gradient(135deg,#0a0a1a,#2a234a); color:#ffd66b; }
+.theme-toggle .knob::before{ content:"☾"; }
+:root[data-theme="light"] .theme-toggle .knob::before{ content:"☀"; }
+
+/* ===================== LIGHT THEME ===================== */
+:root[data-theme="light"]{
+  --bg:#f5f3ee; --surface:#ffffff; --card:#ffffff;
+  --accent:#6840f0; --accent2:#0b9a72;
+  --text:#1a1622; --muted:#5b5870;
+  --border:rgba(20,18,30,0.10);
+  --glow:rgba(124,92,252,0.22);
+  --grad: conic-gradient(from 210deg at 50% 50%, #c9b8ff 0deg, #b5f0d6 110deg, #ffd1ea 230deg, #c9b8ff 360deg);
+  --ring: 0 0 0 1px rgba(20,18,30,.06), 0 30px 80px -30px rgba(124,92,252,.35);
+}
+:root[data-theme="light"] html,
+:root[data-theme="light"] body{ background:#f5f3ee; }
+:root[data-theme="light"] body::before{ opacity:.25; mix-blend-mode: multiply; }
+:root[data-theme="light"] body::after{
+  background:
+    radial-gradient(60% 50% at 12% 0%, rgba(124,92,252,.14), transparent 60%),
+    radial-gradient(50% 40% at 100% 10%, rgba(0,229,160,.10), transparent 60%),
+    radial-gradient(40% 30% at 50% 100%, rgba(255,106,213,.08), transparent 60%);
+}
+:root[data-theme="light"] nav{
+  background: rgba(255,255,255,.7); border-bottom:1px solid rgba(20,18,30,.08);
+  box-shadow: 0 8px 32px -16px rgba(20,18,30,.15);
+}
+:root[data-theme="light"] .nav-links a{ color:#5b5870; }
+:root[data-theme="light"] .nav-links a:hover{ color:var(--accent); }
+:root[data-theme="light"] .hero h1 em{ color:#6840f0; }
+:root[data-theme="light"] .hero h1 .green{ color:#0b9a72; }
+:root[data-theme="light"] .hero-sub,
+:root[data-theme="light"] .section-sub,
+:root[data-theme="light"] .stat-label,
+:root[data-theme="light"] .service-card p,
+:root[data-theme="light"] .plan-desc,
+:root[data-theme="light"] .plan-features li,
+:root[data-theme="light"] .testimonial-card p,
+:root[data-theme="light"] .reviewer-role,
+:root[data-theme="light"] .portfolio-info p{ color:#4a4760; }
+:root[data-theme="light"] .service-card,
+:root[data-theme="light"] .price-card,
+:root[data-theme="light"] .testimonial-card,
+:root[data-theme="light"] .portfolio-card,
+:root[data-theme="light"] .step-card,
+:root[data-theme="light"] .contact-card,
+:root[data-theme="light"] .form-wrap{
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border:1px solid rgba(20,18,30,.08);
+  box-shadow: 0 20px 50px -28px rgba(20,18,30,.18);
+}
+:root[data-theme="light"] .price-card.featured{
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(247,243,255,.92));
+  border:1px solid rgba(124,92,252,.4);
+  box-shadow: 0 30px 60px -20px rgba(124,92,252,.4);
+}
+:root[data-theme="light"] input,
+:root[data-theme="light"] textarea,
+:root[data-theme="light"] select{
+  background: rgba(255,255,255,.85) !important;
+  border:1px solid rgba(20,18,30,.12) !important;
+  color:#1a1622 !important;
+}
+:root[data-theme="light"] input::placeholder,
+:root[data-theme="light"] textarea::placeholder{ color:#8a87a0; }
+:root[data-theme="light"] .marquee{
+  background: linear-gradient(90deg, transparent, rgba(124,92,252,.06), transparent);
+  border-top:1px solid rgba(20,18,30,.06); border-bottom:1px solid rgba(20,18,30,.06);
+}
+:root[data-theme="light"] .marquee-track{ color:#1a1622; }
+:root[data-theme="light"] footer{ background:rgba(245,243,238,.6); border-top:1px solid rgba(20,18,30,.08); color:#5b5870; }
+:root[data-theme="light"] footer a{ color:#5b5870; }
+:root[data-theme="light"] ::-webkit-scrollbar-track{ background:#ece8e0; }
+:root[data-theme="light"] ::-webkit-scrollbar-thumb{ background:linear-gradient(#6840f0,#4a2dbf); }
+:root[data-theme="light"] .service-btn{ color:#1a1622; border-color: rgba(20,18,30,.15); }
+:root[data-theme="light"] .service-btn:hover{ color:var(--accent); border-color:var(--accent); background:rgba(124,92,252,.08); }
+:root[data-theme="light"] .plan-btn.outline{ color:#1a1622; border-color: rgba(20,18,30,.15); }
+:root[data-theme="light"] .hero-tag{ background:rgba(124,92,252,.10); color:#6840f0; }
+</style>
+
 </head>
+
 <body>
 
 <!-- Config Setup Banner (shown when Supabase/EmailJS not configured) -->
@@ -251,7 +575,11 @@ footer p{font-size:0.78rem;color:var(--muted)}
 <li><a onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Pricing</a></li>
 <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a></li>
   </ul>
-  <button class="nav-cta" onclick="scrollTo('contact')">Hire Me</button>
+  <div style="display:flex;align-items:center">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><span class="knob"></span></button>
+    <button class="nav-cta" onclick="scrollTo('contact')">Hire Me</button>
+  </div>
+
 </nav>
 
 <!-- ===================== HERO ===================== -->
@@ -274,6 +602,18 @@ footer p{font-size:0.78rem;color:var(--muted)}
   </div>
 </section>
 
+<div class="tape" aria-hidden="true">
+  <div class="tape-track">
+    <span>Landing Pages</span><span>E-Commerce</span><span>SEO</span><span>Webflow</span>
+    <span>Next.js</span><span>Shopify</span><span>WordPress</span><span>Brand Sites</span>
+    <span>Performance</span><span>Maintenance</span>
+    <span>Landing Pages</span><span>E-Commerce</span><span>SEO</span><span>Webflow</span>
+    <span>Next.js</span><span>Shopify</span><span>WordPress</span><span>Brand Sites</span>
+    <span>Performance</span><span>Maintenance</span>
+  </div>
+</div>
+
+
 <!-- ===================== SERVICES ===================== -->
 <section class="services" id="services">
   <div class="section-tag">What I Offer</div>
@@ -284,7 +624,7 @@ footer p{font-size:0.78rem;color:var(--muted)}
       <div class="service-icon">🎨</div><h3>Landing Page Design</h3>
       <p>High-converting landing pages designed to capture leads and drive sales. Mobile-first, SEO-ready.</p>
       <div class="service-price">Starting at $299</div>
-     <button class="service-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get This Service →</button>
+     <button class="service-btn" onclick="selectService('Landing Page')">Get This Service →</button>
     </div>
     <div class="service-card">
       <div class="service-icon">🛒</div><h3>E-Commerce Store</h3>
@@ -360,28 +700,31 @@ footer p{font-size:0.78rem;color:var(--muted)}
     <div class="portfolio-card">
       <div class="portfolio-thumb t1">
         <span>🏋️</span>
-        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="scrollTo('contact')">Start Similar Project</button></div>
+        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="startSimilar('FitPeak fitness studio','Business Website')">Start Similar Project</button></div>
+
       </div>
       <div class="portfolio-info"><h4>FitPeak – Fitness Studio</h4><p>Booking system, class schedule, and membership portal</p><span class="portfolio-tag">WordPress</span></div>
     </div>
     <div class="portfolio-card">
       <div class="portfolio-thumb t2" style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=600');background-size:cover;background-position:center"></div>
         <span>🌿</span>
-        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="scrollTo('contact')">Start Similar Project</button></div>
+        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="startSimilar('GreenLeaf organic store','E-Commerce Store')">Start Similar Project</button></div>
+
       </div>
       <div class="portfolio-info"><h4>GreenLeaf – Organic Store</h4><p>E-commerce with 200+ products, Stripe payments</p><span class="portfolio-tag">Shopify</span></div>
     </div>
     <div class="portfolio-card">
       <div class="portfolio-thumb t3">
         <span>🍕</span>
-        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="scrollTo('contact')">Start Similar Project</button></div>
+        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="startSimilar('Napoli restaurant chain','Business Website')">Start Similar Project</button></div>
+
       </div>
       <div class="portfolio-info"><h4>Napoli – Restaurant Chain</h4><p>Multi-location site with online ordering integration</p><span class="portfolio-tag">Next.js</span></div>
     </div>
     <div class="portfolio-card">
       <div class="portfolio-thumb t4">
         <span>💼</span>
-        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="scrollTo('contact')">Start Similar Project</button></div>
+        <div class="portfolio-overlay"><button class="portfolio-overlay-btn" onclick="startSimilar('Vantage finance consultancy','Business Website')">Start Similar Project</button></div>
       </div>
       <div class="portfolio-info"><h4>Vantage – Finance Consultancy</h4><p>Corporate site with lead capture and blog</p><span class="portfolio-tag">Webflow</span></div>
     </div>
@@ -652,19 +995,61 @@ function scrollTo(id) {
   document.getElementById(id).scrollIntoView({ behavior: 'smooth' })
 }
 
+// ─── Theme toggle ────────────────────────────────────────────
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', cur);
+  try{ localStorage.setItem('pf-theme', cur); }catch(e){}
+}
+
+// ─── Form helpers ────────────────────────────────────────────
+function setServiceOption(name){
+  const sel = document.getElementById('f_service'); if(!sel) return;
+  const target = (name||'').toLowerCase().trim();
+  for (let o of sel.options) {
+    const t = (o.text||'').toLowerCase().trim();
+    if (t === target) { sel.value = o.value || o.text; return; }
+  }
+  for (let o of sel.options) {
+    const t = (o.text||'').toLowerCase();
+    if (t && (t.includes(target) || target.includes(t))) { sel.value = o.value || o.text; return; }
+  }
+}
+function setBudgetOption(value){
+  const sel = document.getElementById('f_budget'); if(!sel) return;
+  for (let o of sel.options) { if ((o.text||'').includes(value)) { sel.value = o.value || o.text; return; } }
+}
+
 // ─── Service buttons → auto-fill form ────────────────────────
 function selectService(name) {
-  const sel = document.getElementById('f_service')
-  for (let o of sel.options) { if (o.text.includes(name) || name.includes(o.text)) { sel.value = o.value; break } }
-  scrollTo('contact')
+  setServiceOption(name);
+  scrollTo('contact');
 }
 
 // ─── Pricing plan buttons → auto-fill form ───────────────────
+const PLAN_MAP = {
+  'Starter':  { service:'Landing Page',     budget:'$200' },
+  'Growth':   { service:'Business Website', budget:'$500' },
+  'Pro':      { service:'E-Commerce Store', budget:'$1,000' }
+};
+
 function selectPlan(plan) {
-  const msg = document.getElementById('f_message')
-  msg.value = `Hi! I'm interested in the ${plan} package.`
-  scrollTo('contact')
+  const tier = plan.split(' ')[0];
+  const cfg = PLAN_MAP[tier];
+  if (cfg){ setServiceOption(cfg.service); setBudgetOption(cfg.budget); }
+  const msg = document.getElementById('f_message');
+  msg.value = `Hi! I'm interested in the ${plan} package.`;
+  scrollTo('contact');
 }
+
+// ─── Portfolio "Start Similar Project" → pre-fill ────────────
+function startSimilar(projectName, serviceType){
+  setServiceOption(serviceType);
+  const msg = document.getElementById('f_message');
+  msg.value = `Hi! I'd like a site similar in style and scope to ${projectName}. Here's what I have in mind: `;
+  scrollTo('contact');
+}
+
 
 // ─── Form Submission ─────────────────────────────────────────
 async function handleSubmit() {
