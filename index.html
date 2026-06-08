@@ -2079,7 +2079,7 @@ footer p{font-size:0.75rem;color:var(--muted)}
 ══════════════════════════════════════════════════════ -->
 <nav id="mainNav">
   <!-- Logo — PRESERVED -->
-  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})"><em>Sid</em><span>.</span>dev</div>
+  <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})"><em>Sivara</em><span>.</span>dev</div>
 
   <!-- Center nav links — all onclick handlers PRESERVED -->
   <ul class="nav-links">
@@ -2828,8 +2828,8 @@ footer p{font-size:0.75rem;color:var(--muted)}
      FOOTER — All IDs and onclick handlers PRESERVED
 ══════════════════════════════════════════════════════ -->
 <footer>
-  <div class="logo"><em>Sid</em><span>.</span>dev</div>
-  <p>© 2025 Sid.dev · All rights reserved.</p>
+  <div class="logo"><em>Sivara</em><span>.</span>dev</div>
+  <p>© 2025 Sivara · All rights reserved.</p>
   <div class="footer-links">
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
@@ -2905,7 +2905,7 @@ footer p{font-size:0.75rem;color:var(--muted)}
 const CONFIG = {
   supabaseUrl: 'https://uxjanousfxyneiulsbgm.supabase.co',
   supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV4amFub3VzZnh5bmVpdWxzYmdtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzOTk4MDMsImV4cCI6MjA5NTk3NTgwM30.3rnqhnnVB7fNTbrwqBqVDXLKAygJVZZJeXvbucryTz8',
-  adminPassword: 'pixelforge2025',
+  adminPassword: 'sivara2025',
 }
 
 // ── Supabase init — PRESERVED ───────────────────────────────
@@ -3089,7 +3089,7 @@ async function deleteInquiry(id) {
   loadInquiries()
 }
 
-function replyTo(email) { window.open(`mailto:${email}?subject=Re: Your PixelForge Inquiry`) }
+function replyTo(email) { window.open(`mailto:${email}?subject=Re: Your Sivara Inquiry`) }
 
 async function clearAll() {
   if (!confirm('Clear ALL inquiries?')) return
@@ -3106,7 +3106,7 @@ function exportCSV() {
   const csv=[headers,...rows].map(r=>r.join(',')).join('\n')
   const blob=new Blob([csv],{type:'text/csv'})
   const a=document.createElement('a');a.href=URL.createObjectURL(blob)
-  a.download=`pixelforge-inquiries-${new Date().toISOString().slice(0,10)}.csv`;a.click()
+  a.download=`sivara-inquiries-${new Date().toISOString().slice(0,10)}.csv`;a.click()
 }
 
 // ── Keyboard — PRESERVED ────────────────────────────────────
